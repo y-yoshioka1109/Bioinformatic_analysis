@@ -1,0 +1,8 @@
+fastq-dumpを今まで使っていたが、fasterq-dumpが新たにリリースされていた。
+
+#Link to SRA-toolkit
+https://github.com/ncbi/sra-tools
+
+試しにダウンロード時間を測ってみた。ダウンロードしたファイルはpaired-endで1.8Gbのデータ。
+fastq-dump --split-e -O fastq SRR####### -->> 13m16.894s
+fasterq-dump -S -O fasterq SRR#######  -->> 10m25.979s
