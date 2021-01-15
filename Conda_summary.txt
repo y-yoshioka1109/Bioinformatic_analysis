@@ -1,6 +1,8 @@
 仮想環境一覧
 conda info -e
+
 仮想環境削除
 conda remove -n [name] --all
+
 仮想環境構築
 conda create -n [name] [library]
