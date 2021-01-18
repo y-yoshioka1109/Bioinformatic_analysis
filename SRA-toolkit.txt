@@ -7,4 +7,4 @@ https://github.com/ncbi/sra-tools
 fastq-dump --split-e SRR####### -->> 13m16.894s
 fasterq-dump -S SRR#######  -->> 10m25.979s
 
-*fasterq-dumpはデフォルトで6スレット使うらしい。
+*fasterq-dumpはデフォルトで6スレッド使うらしい。
