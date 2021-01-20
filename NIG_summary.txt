@@ -1,11 +1,31 @@
-稼働状況の確認
+#稼働状況の確認
 qstat -g c
 
-実行ジョブの確認
+#実行ジョブの確認
 qstat  -> r (実行中), qw (待機中)
 
-簡単な処理であればjobを投入しなくてもこれで実行できる。
+#簡単な処理であればjobを投入しなくてもこれで実行できる。
 qlogin -l s_vmem=20G -l mem_req=20Gとかにするとメモリ量を増やせる。
 
-使用可能なディスク容量を確認できる。
+#使用可能なディスク容量を確認できる。
 lfs quota -g [name] /lustre7
+
+#NCBIのデータベースを使ったBLASTサーチ
+singularity exec --bind /usr/local/seq \
+ /usr/local/biotools/b/blast\:2.6.0--boost1.64_2 blastn \
+ -query contigs.fa \
+ -db /usr/local/seq/blast/ncbi/nt \
+ -evalue 1e-10 \
+ -num_threads 24 \
+ -num_alignments 5 \
+ -outfmt 6 >${i}.blast_vs_nt_20210120.blastout
+
+#BLASTサーチの結果
+sc3568	FJ032693.1	95.712	723	27	3	1	722	2157	2876	0.0	1160
+sc3568	KY364697.1	95.291	722	34	0	1	722	4704	5425	0.0	1146
+sc3568	KY364696.1	95.152	722	35	0	1	722	4708	5429	0.0	1140
+sc3568	AF289049.1	95.166	724	25	5	1	722	2798	3513	0.0	1134
+sc3568	LC258398.1	94.606	723	37	2	1	722	2840	3561	0.0	1118
+
+#ヒットした配列の取得もできる
+blastdbcmd -entry FJ032693.1 -db /usr/local/seq/blast/ncbi/nt -dbtype nucl
