@@ -5,7 +5,7 @@ qstat -g c
 qstat  -> r (実行中), qw (待機中)
 
 #簡単な処理であればjobを投入しなくてもこれで実行できる。
-qlogin -l s_vmem=20G -l mem_req=20Gとかにするとメモリ量を増やせる。
+qlogin -l s_vmem=32G -l mem_req=32G とかにするとメモリ量を増やせる。
 
 #使用可能なディスク容量を確認できる。
 lfs quota -g [name] /lustre7
