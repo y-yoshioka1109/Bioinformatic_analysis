@@ -8,7 +8,8 @@ qstat  -> r (実行中), qw (待機中)
 qlogin -l s_vmem=32G -l mem_req=32G とかにするとメモリ量を増やせる。
 
 #使用可能なディスク容量を確認できる。
-lfs quota -g [name] /lustre7
+lfs quota -u [user name] /lustre7
+lfs quota -g [group name] /lustre7
 
 #NCBIのデータベースを使ったBLASTサーチ
 singularity exec --bind /usr/local/seq \
