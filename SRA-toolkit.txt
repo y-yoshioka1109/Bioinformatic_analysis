@@ -12,3 +12,6 @@ fasterq-dump -S SRR#######  -->> 10m25.979s
 ######################################################
 #parallel-fastq-dumpがとても使いやすい (2021年9月30日追記)
 parallel-fastq-dump --threads 24 --split-files --outdir dir --sra-id ${i}
+  
+  
+  
