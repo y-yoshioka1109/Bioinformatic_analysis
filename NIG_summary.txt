@@ -11,6 +11,9 @@ qlogin -l s_vmem=32G -l mem_req=32G とかにするとメモリ量を増やせ�
 lfs quota -u [user name] /lustre7
 lfs quota -g [group name] /lustre7
 
+#ファイルの権限など(chmod)
+https://qiita.com/ntkgcj/items/6450e25c5564ccaa1b95
+
 #NCBIのデータベースを使ったBLASTサーチ
 singularity exec --bind /usr/local/seq \
  /usr/local/biotools/b/blast\:2.6.0--boost1.64_2 blastn \
