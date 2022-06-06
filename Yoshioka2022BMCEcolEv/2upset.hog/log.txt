@@ -1,0 +1,30 @@
+#genes informationを取得
+ perl select-id_def.pl 2upset.hog.list genecount.tsv > 2upset.hog.genecount.tsv
+
+########################
+#### dN/dS analysis ####
+########################
+
+#single-copy between Montipora
+ perl select-id_def.pl 2upset.hog.list genecount.tsv |awk -F"\t" '$6==1&&$7==1{print}'|awk '{print$1}' > single-copy_between_montipora.lst
+
+#Montipora-specific and single-copy between Montipora Montipora-specific
+ awk -F"\t" '$6==1&&$7==1{print$1}' 2upset.hog.genecount.cleaned.tsv > single-copy_between_montipora.hog.cleaned.lst
+
+#faa用リストを作成、配列を取得
+ mkdir list_faa
+ mkdir faa
+ for i in `cat single-copy_between_montipora.hog.cleaned.lst`;do grep ${i} N0.removing-transposon.tsv |perl -pe 's/adig/\nadig/g'|perl -pe 's/XP/\nXP/g'|perl -pe 's/aten/\naten/g'|perl -pe 's/astr/\nastr/g'|perl -pe 's/mcac/\nmcac/g'|perl -pe 's/meff/\nmeff/g'|perl -pe 's/paus/\npaus/g'|grep -v N0 |grep -v paus|perl -pe 's/,//g'|perl -pe 's/ //g' |perl -pe 's/\t//g' > list_faa/${i}.lst ;done
+ cd list_faa
+ for i in `ls|grep HOG`;do seqkit grep -f ${i} ../faa/cat-all.fa >> ../faa/${i}.fa ;done
+
+#fna用リストを作成
+ mkdir list_fna
+ mkdir fna
+ for i in `cat single-copy_between_montipora.hog.cleaned.lst`;do grep ${i} N0.removing-transposon.tsv |perl -pe 's/adig/\nadig/g'|perl -pe 's/XP/\nXP/g'|perl -pe 's/aten/\naten/g'|perl -pe 's/astr/\nastr/g'|perl -pe 's/mcac/\nmcac/g'|perl -pe 's/meff/\nmeff/g'|perl -pe 's/paus/\npaus/g'|grep -v N0 |grep -v paus|perl -pe 's/,//g'|perl -pe 's/ //g' |perl -pe 's/\t//g'|perl -pe 's/\.p1//g' > list_fna/${i}.lst ;done
+ cd list_fna
+ for i in `ls|grep HOG`;do seqkit grep -f ${i} ../fna/cat-all.fa >> ../fna/${i}.fa ;done
+
+#mayuri号の結果を移動
+ awk -F"\t"  '$3>0.01{print$1"\t"$2"\t"$3"\t"$4"\t"$5}' mcac-meff/kaks.MA.lst|awk -F"\t"  '$3<2{print$1"\t"$2"\t"$3"\t"$4"\t"$5}'|perl -ne 'chomp;@a=split(/\t/,$_);if($a[4]<0.05){print"$a[0]\t$a[1]\t$a[2]\t$a[3]\t$a[4]\tsig\n";}else{print"$a[0]\t$a[1]\t$a[2]\t$a[3]\t$a[4]\tnotsig\n";}' |perl -pe 's/\n/\tmont-specific\n/g' > kaks.mcac-meff
+ for i in `cat single-copy_between_montipora.hog.cleaned.lst`;do grep ${i} kaks.mcac-meff ;done |perl -pe 's/mont-specific/3_mont-specific/g' |grep -v notsig > kaks.mcac-meff.sorted
