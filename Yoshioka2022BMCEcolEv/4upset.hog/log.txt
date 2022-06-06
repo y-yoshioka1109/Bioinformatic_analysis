@@ -1,0 +1,2 @@
+perl select-id_def.pl  4upset.hog.list genecount.tsv > 4upset.hog.genecount.tsv
+awk -F"\t" '$2==0&&$3==0&&$4==0&&$6==0&&$7==0{print}' 4upset.hog.genecount.tsv > 4upset.hog.genecount.cleaned.tsv
