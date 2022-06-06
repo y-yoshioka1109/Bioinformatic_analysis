@@ -1,0 +1,11 @@
+#genes informationを取得
+ perl select-id_def.pl 6upset.hog.list genecount.tsv > 6upset.hog.genecount.tsv
+ awk -F"\t" '$6==0&&$7==0{print}' 6upset.hog.genecount.tsv > 6upset.hog.genecount.cleaned.tsv 
+
+
+#Acroで増えた遺伝子
+ perl -e '$c=0;while($_=<>){if($c==1){@a=split(/\t/,$_);$Acro=$a[1]+$a[2]+$a[3];$avgAcro=$Acro/3;$Astr=$a[4];$ratio=$avgAcro/$Astr;print"$a[0]\t$ratio\t$avgAcro\t$Astr\n";}$c=1;}' 6upset.hog.genecount.cleaned.tsv 
+
+#Astrで増えた遺伝子
+ perl -e '$c=0;while($_=<>){if($c==1){@a=split(/\t/,$_);$Astr=$a[4];$Mont=$a[5]+$a[6];$avgMont=$Mont/2;$ratio=$Astr/$avgMont;print"$a[0]\t$ratio\t$Astr\t$avgMont\n";}$c=1;}' 3upset.hog.genecount.tsv|sort -k 2 -nr|head -n 12
+HOG ratio AstrSize MontSize
