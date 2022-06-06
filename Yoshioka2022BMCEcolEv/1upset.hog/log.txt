@@ -1,0 +1,64 @@
+#HOGのカウントデータを取得
+ perl select-id_def.pl 1upset.hog.list genecount.tsv > 1upset.hog.genecount.tsv
+
+
+#Acroで増えた遺伝子
+ perl -e '$c=0;while($_=<>){if($c==1){@a=split(/\t/,$_);$Acro=$a[1]+$a[2]+$a[3];$avgAcro=$Acro/3;$Mont=$a[5]+$a[6];$avgMont=$Mont/2;$ratio=$avgAcro/$avgMont;print"$a[0]\t$ratio\t$avgAcro\t$avgMont\n";}$c=1;}' 1upset.hog.genecount.tsv |sort -k2 -nr |head
+
+#Montで増えた遺伝子
+ perl -e '$c=0;while($_=<>){if($c==1){@a=split(/\t/,$_);$Acro=$a[1]+$a[2]+$a[3];$avgAcro=$Acro/3;$Mont=$a[5]+$a[6];$avgMont=$Mont/2;$ratio=$avgMont/$avgAcro;print"$a[0]\t$ratio\t$avgAcro\t$avgMont\n";}$c=1;}' 1upset.hog.genecount.tsv |sort -k2 -nr |head
+
+#Acroの合計遺伝子ファミリーサイズ
+ perl -e '$c=0;while($_=<>){if($c==1){@a=split(/\t/,$_);$Acro=$a[1]+$a[2]+$a[3];$avgAcro=$Acro/3;$Mont=$a[5]+$a[6];$avgMont=$Mont/2;$ratio=$avgMont/$avgAcro;print"$a[0]\t$ratio\t$avgAcro\t$avgMont\n";}$c=1;}' 1upset.hog.genecount.tsv |perl -e '$c=0;$C=0;while($_=<>){@a=split(/\t/,$_);$c+=$a[2];$C++;}print"$c\n";'
+#Montの合計遺伝子ファミリーサイズ
+ perl -e '$c=0;while($_=<>){if($c==1){@a=split(/\t/,$_);$Acro=$a[1]+$a[2]+$a[3];$avgAcro=$Acro/3;$Mont=$a[5]+$a[6];$avgMont=$Mont/2;$ratio=$avgMont/$avgAcro;print"$a[0]\t$ratio\t$avgAcro\t$avgMont\n";}$c=1;}' 1upset.hog.genecount.tsv |perl -e '$c=0;$C=0;while($_=<>){@a=split(/\t/,$_);$c+=$a[3];$C++;}print"$c\n";'
+
+#For Figure
+ perl -e '$c=0;while($_=<>){if($c==1){@a=split(/\t/,$_);$Acro=$a[1]+$a[2]+$a[3];$avgAcro=$Acro/3;$Mont=$a[5]+$a[6];$avgMont=$Mont/2;$ratio=$avgMont/$avgAcro;print"$avgAcro\t$avgMont\n";}$c=1;}' 1upset.hog.genecount.tsv|sort -nr |perl -e '$c=0;$a=1;while($_=<>){chomp;@b=split(/\t/,$_);if($c>0){if($b[0]==$p1 && $b[1]==$p2){$a++;}else{print"$p1\t$p2\t$a\tHOG\n";$a=1;}}$p1=$b[0];$p2=$b[1];$c=1;}print"$p1\t$p2\t$a\tHOG\n"'|sort -k2 -nr > figure.txt
+
+Ex.
+	Target	Rest of family
+Acro	11	9915
+Mont	1.5	10202.5
+p-value = 0.006669(HOG0000829), 0.01183(HOG0000531), 0.03657(HOG0001590), 0.06665(HOG0002520)
+
+	Target	Rest of family
+Acro	1	9925
+Mont	6	10198
+p-value = 0.1252(HOG0003683)
+
+
+#annotation(EggNogとSwissProtの双方で確認)
+#adig
+ grep HOG0001590 N0.removing-transposon.tsv |perl -pe 's/ /\n/g' |perl -pe 's/\t/\n/g'|grep adig|perl -pe 's/,//g' |perl select-id_def.pl - ~/study/coral_genome/gene_prediction/Montipora/adig_shinzato/adig_out.emapper.annotations.20210709.txt|awk -F"\t" '{print$9}'
+ grep HOG0001590 N0.removing-transposon.tsv |perl -pe 's/ /\n/g' |perl -pe 's/\t/\n/g'|grep adig|perl -pe 's/,//g' |perl select-id_def.pl - ../adig_cds.longest.aa_vs_Swiss_20210422.besthit.e5.blastout.sorted 
+#meff
+ grep HOG0002487 N0.removing-transposon.tsv |perl -pe 's/ /\n/g' |perl -pe 's/\t/\n/g'|grep meff|perl -pe 's/,//g' |perl select-id_def.pl - ~/study/coral_genome/gene_prediction/Montipora/meff/meff_out.emapper.annotations.20210709.txt |less -S
+ grep HOG0002487 N0.removing-transposon.tsv |perl -pe 's/ /\n/g' |perl -pe 's/\t/\n/g'|grep meff|perl -pe 's/,//g' |perl select-id_def.pl - ../meff.longest.aa_vs_Swiss_20210315.besthit_1e-5.blastout.sorted |less -S
+
+########################
+#### dN/dS analysis ####
+########################
+
+#Single-copy genes within Acroporidae
+ awk -F"\t" '$2==1&&$3==1&&$4==1&&$5==1&&$6==1&&$7==1{print$1}' 1upset.hog.genecount.tsv > single-copy.lst
+
+#faa用リストを作成、配列を取得
+ for i in `cat single-copy.lst`;do grep ${i} N0.removing-transposon.tsv |perl -pe 's/adig/\nadig/g'|perl -pe 's/XP/\nXP/g'|perl -pe 's/aten/\naten/g'|perl -pe 's/astr/\nastr/g'|perl -pe 's/mcac/\nmcac/g'|perl -pe 's/meff/\nmeff/g'|perl -pe 's/paus/\npaus/g'|grep -v N0 |grep -v adig|grep -v aten|grep -v XP|grep -v astr|perl -pe 's/,//g'|perl -pe 's/ //g' |perl -pe 's/\t//g' > list_faa/${i}.lst ;done
+ mkdir list_faa
+ cd list_faa
+ for i in `ls|grep HOG`;do seqkit grep -f ${i} ../faa/cat-all.fa >> ../faa/${i}.fa ;done
+
+#fna用リストを作成
+ for i in `cat single-copy.lst`;do grep ${i} N0.removing-transposon.tsv |perl -pe 's/adig/\nadig/g'|perl -pe 's/XP/\nXP/g'|perl -pe 's/aten/\naten/g'|perl -pe 's/astr/\nastr/g'|perl -pe 's/mcac/\nmcac/g'|perl -pe 's/meff/\nmeff/g'|perl -pe 's/paus/\npaus/g'|grep -v N0 |grep -v paus|grep -v adig|grep -v aten|grep -v XP|grep -v astr|perl -pe 's/,//g'|perl -pe 's/ //g' |perl -pe 's/\t//g'|perl -pe 's/\.p1//g' > list_fna/${i}.lst ;done
+ mkdir list_fna
+ cd list_fna
+ for i in `ls|grep HOG`;do seqkit grep -f ${i} ../fna/cat-all.fa >> ../fna/${i}.fa ;done
+
+#mayuri号の結果を移動
+ awk -F"\t"  '$3>0.01{print$1"\t"$2"\t"$3"\t"$4"\t"$5}' mcac-meff/kaks.MA.lst|awk -F"\t"  '$3<2{print$1"\t"$2"\t"$3"\t"$4"\t"$5}'|perl -ne 'chomp;@a=split(/\t/,$_);if($a[4]<0.05){print"$a[0]\t$a[1]\t$a[2]\t$a[3]\t$a[4]\tsig\n";}else{print"$a[0]\t$a[1]\t$a[2]\t$a[3]\t$a[4]\tnotsig\n";}' |perl -pe 's/\n/\tmcac-meff\n/g' > kaks.mcac-meff
+ perl -pe 's/mcac-meff/1_mcac-meff/g' kaks.mcac-meff |grep -v notsig > kaks.mcac-meff.sorted 
+
+#気になるgeneの抽出
+grep HOG0002487 N0.removing-transposon.tsv |perl -pe 's/ /\n/g' |perl -pe 's/\t/\n/g'|grep meff|perl -pe 's/,//g' > tmp
+seqkit grep -f tmp ../2upset.hog/faa/cat-all.fa
