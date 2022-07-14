@@ -6,7 +6,7 @@ orthofinder -a 4 -f ./20210315
 ####################################
 #Detection of Transposon-like genes
 ####################################
-#Detection from Pfam keywords
+#Detection from Pfam keywords "Reverse transcriptase" and "Integrase"
 grep Pfam mcac.longest.aa.interpro.tsv |grep -e "Reverse transcriptase" -e "Integrase" |awk '{print$1}'|sort|uniq > transposon-like.pfam.ls
 
 #Detection with Dfam database
