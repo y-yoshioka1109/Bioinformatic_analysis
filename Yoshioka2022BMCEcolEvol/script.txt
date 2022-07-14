@@ -75,15 +75,14 @@ HOG	adig	aten	amil	astr	mcac	meff
  perl select-id.pl montipora.hog.lst hog.genus.lst > montipora.hog.lst.bin
  paste acropora.hog.lst.bin astreopora.hog.lst.bin montipora.hog.lst.bin |awk -F"\t" '{print$1"\t"$2"\t"$4"\t"$6"\t"$8}' > upset.lst
 
-
 ### Up-set ###
-1 -> common in three genus
-2 -> montipora specific
-3 -> common in mont and astr
-4 -> astreopora specific
-5 -> common in acro and mont
-6 -> common in acro and astr
-7 -> acropora specific
+1upset.hog -> common in the three genus
+2upset.hog -> montipora specific
+3upset.hog -> common in mont and astr
+4upset.hog -> astreopora specific
+5upset.hog -> common in acro and mont
+6upset.hog -> common in acro and astr
+7upset.hog -> acropora specific
 
 #Upsetの結果をもとに、各領域に含まれるHOGを整理した。
 #For montipora
