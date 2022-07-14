@@ -55,27 +55,10 @@ awk '{print$5}' TPSI/mcac.longest.mrna.TPSI.allHits |sort|uniq > transposon-like
  perl select-id2.pl meff.GeneCounts.tsv hog.lst > meff.GeneCounts.all.lst
  paste adig.GeneCounts.all.lst aten.GeneCounts.all.lst amil.GeneCounts.all.lst astr.GeneCounts.all.lst mcac.GeneCounts.all.lst meff.GeneCounts.all.lst |awk -F"\t" '{print$1"\t"$2"\t"$4"\t"$6"\t"$8"\t"$10"\t"$12}' >  genecount.tsv
 
-######################
-select-id2.pl
-open (LIST, $ARGV[0]);
-while($l=<LIST>){
-	chomp($l);
-	@a=split(/\t/,$l);
-	$c{$a[0]} = $l;
-}
-close LIST,
 
-open (L, $ARGV[1]);
-while($line=<L>){
-	chomp($line);
-	@b=split(/\t/,$line);
-	if (exists($c{$line}) ){
-		print "$c{$line}\n";
-	}else{
-		print "$line\t0\n";
-	}
-}
-######################
+#Column components are below.
+1	2	3	4	5	6	7
+HOG	adig	aten	amil	astr	mcac	meff
 
 #For acropora
  awk -F"\t" '$2>0&&$3>0&&$4>0{print$1}' genecount.tsv > acropora.hog.lst
