@@ -27,7 +27,6 @@ awk '{print$5}' TPSI/mcac.longest.mrna.TPSI.allHits |sort|uniq > transposon-like
 #Move to Phylogenetic_Hierarchical_Orthogroups directory
 #transposonを含むOGを検出
  for i in `cat transposon-like.all.lst`;do grep ${i} N0.tsv ;done |sort |uniq > transposon.hog.lst
-
 #transposon-like OGを取り除いたリストを作成
  perl select-id_def2.pl transposon.hog.lst N0.tsv > N0.removing-transposon.tsv
 
@@ -60,20 +59,19 @@ awk '{print$5}' TPSI/mcac.longest.mrna.TPSI.allHits |sort|uniq > transposon-like
 1	2	3	4	5	6	7
 HOG	adig	aten	amil	astr	mcac	meff
 
-#For acropora
+#acropora
  awk -F"\t" '$2>0&&$3>0&&$4>0{print$1}' genecount.tsv > acropora.hog.lst
-#For astreopora
+#astreopora
  awk -F"\t" '$5>0{print$1}' genecount.tsv > astreopora.hog.lst
-#For montipora
+#montipora
  awk -F"\t" '$6>0&&$7>0{print$1}' genecount.tsv > montipora.hog.lst
 #まとめる
- cat acropora.hog.lst astreopora.hog.lst montipora.hog.lst |sort |uniq > hog.genus.lst 
-
+ cat acropora.hog.lst astreopora.hog.lst montipora.hog.lst |sort |uniq > hog.genus.lst
 #binaryデータ
- perl select-id.pl acropora.hog.lst hog.genus.lst > acropora.hog.lst.bin
- perl select-id.pl astreopora.hog.lst hog.genus.lst > astreopora.hog.lst.bin 
- perl select-id.pl montipora.hog.lst hog.genus.lst > montipora.hog.lst.bin
- paste acropora.hog.lst.bin astreopora.hog.lst.bin montipora.hog.lst.bin |awk -F"\t" '{print$1"\t"$2"\t"$4"\t"$6"\t"$8}' > upset.lst
+ perl select-id.pl acropora.hog.lst hog.genus.lst > acropora.hog.lst2
+ perl select-id.pl astreopora.hog.lst hog.genus.lst > astreopora.hog.lst2
+ perl select-id.pl montipora.hog.lst hog.genus.lst > montipora.hog.lst2
+ paste acropora.hog.lst2 astreopora.hog.lst2 montipora.hog.lst2 |awk -F"\t" '{print$1"\t"$2"\t"$4"\t"$6"\t"$8}' > upset.lst
 
 ### Up-set ###
 1upset.hog -> common in the three genus
@@ -94,6 +92,8 @@ HOG	adig	aten	amil	astr	mcac	meff
 
  cat acropora.hog.cleaned.lst astreopora.hog.cleaned.lst montipora.hog.cleaned.lst|sort|uniq > hog.lst.cleaned
 
+#Input file for Fig. 2.
+montipora.hog.cleaned.lst; acropora.hog.cleaned.lst; astreopora.hog.cleaned.lst
 
 ########################################################################
 # Analysis of transcriptome of early developmental stages
