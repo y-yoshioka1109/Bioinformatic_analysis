@@ -1,11 +1,11 @@
-####################################
-#Ortholoug clustering with seven genomes (adig, amil, aten, astr, mcac, meff, and paus)
-####################################
+########################################################################
+# Ortholoug clustering with seven genomes (adig, amil, aten, astr, mcac, meff, and paus)
+########################################################################
 orthofinder -a 4 -f ./20210315
 
-####################################
-#Detection of Transposon-like genes
-####################################
+########################################################################
+# Detection of Transposon-like genes
+########################################################################
 #Detection from Pfam keywords "Reverse transcriptase" and "Integrase"
 grep Pfam mcac.longest.aa.interpro.tsv |grep -e "Reverse transcriptase" -e "Integrase" |awk '{print$1}'|sort|uniq > transposon-like.pfam.ls
 
@@ -21,9 +21,9 @@ awk '{print$3}' mcac.longest.fa.DfamHits.out |grep mcac|sort|uniq > transposon-l
 ~/bin/TransposonPSI_08222010/transposonPSI.pl mcac.longest.mrna nuc
 awk '{print$5}' TPSI/mcac.longest.mrna.TPSI.allHits |sort|uniq > transposon-like.tpsi.lst
 
-####################################
-#Analysis for gene family compositions
-####################################
+########################################################################
+# Analysis for gene family compositions
+########################################################################
 #Move to Phylogenetic_Hierarchical_Orthogroups directory
 #transposonを含むOGを検出
  for i in `cat transposon-like.all.lst`;do grep ${i} N0.tsv ;done |sort |uniq > transposon.hog.lst
@@ -93,3 +93,13 @@ HOG	adig	aten	amil	astr	mcac	meff
  cat 1upset.hog/1upset.hog.genecount.tsv 3upset.hog/3upset.hog.genecount.cleaned.tsv 4upset.hog/4upset.hog.genecount.cleaned.tsv 6upset.hog/6upset.hog.genecount.cleaned.tsv |awk '{print$1}' > astreopora.hog.cleaned.lst
 
  cat acropora.hog.cleaned.lst astreopora.hog.cleaned.lst montipora.hog.cleaned.lst|sort|uniq > hog.lst.cleaned
+
+
+########################################################################
+# Analysis of transcriptome of early developmental stages
+########################################################################
+#After performing read mapping to reference sequences, collect genes with TPM > 1
+awk -F"\t" '$4>1{print$1}' larva1_salmon/quant.sf > larva1_above1TPM.lst
+
+#Collect genes for which TPM > 1 in all samples
+perl select-id.pl larva1_above1TPM.lst larva2_above1TPM.lst > common_above1TPM.lst
