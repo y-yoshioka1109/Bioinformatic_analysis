@@ -73,7 +73,7 @@ HOG	adig	aten	amil	astr	mcac	meff
  perl select-id.pl montipora.hog.lst hog.genus.lst > montipora.hog.lst2
  paste acropora.hog.lst2 astreopora.hog.lst2 montipora.hog.lst2 |awk -F"\t" '{print$1"\t"$2"\t"$4"\t"$6"\t"$8}' > upset.lst
 
-### Up-set ###
+### UpSet ###
 1upset.hog -> common in the three genus
 2upset.hog -> montipora specific
 3upset.hog -> common in mont and astr
@@ -81,6 +81,14 @@ HOG	adig	aten	amil	astr	mcac	meff
 5upset.hog -> common in acro and mont
 6upset.hog -> common in acro and astr
 7upset.hog -> acropora specific
+
+#上のフィルタリングではAcropora特異的なHOGにMontipora1種が持つHOGも含まれるため、そのようなHOGsを除去する。
+ awk -F"\t" '$2==0&&$3==0&&$4==0&&$5==0{print$1}' genecount.tsv|perl select-id_def.pl - 2upset.hog.list |perl select-id_def.pl - genecount.tsv > 2upset.hog.genecount.cleaned.tsv
+ awk -F"\t" '$2==0&&$3==0&&$4==0{print$1}' genecount.tsv|perl select-id_def.pl - 3upset.hog.list |perl select-id_def.pl - genecount.tsv > 3upset.hog.genecount.cleaned.tsv
+ awk -F"\t" '$2==0&&$3==0&&$4==0&&$6==0&&$7==0{print$1}' genecount.tsv|perl select-id_def.pl - 4upset.hog.list | perl select-id_def.pl - genecount.tsv > 4upset.hog.genecount.cleaned.tsv
+ awk -F"\t" '$5==0{print$1}' genecount.tsv|perl select-id_def.pl - 5upset.hog.list | perl select-id_def.pl - genecount.tsv > 5upset.hog.genecount.cleaned.tsv
+ awk -F"\t" '$6==0&&$7==0{print$1}' genecount.tsv|perl select-id_def.pl - 6upset.hog.list | perl select-id_def.pl - genecount.tsv > 6upset.hog.genecount.cleaned.tsv
+ awk -F"\t" '$5==0&&$6==0&&$7==0{print$1}' genecount.tsv|perl select-id_def.pl - 7upset.hog.list | perl select-id_def.pl - genecount.tsv > 7upset.hog.genecount.cleaned.tsv
 
 #Upsetの結果をもとに、各領域に含まれるHOGを整理した。
 #For montipora
