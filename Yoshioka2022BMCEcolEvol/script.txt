@@ -102,4 +102,11 @@ HOG	adig	aten	amil	astr	mcac	meff
 awk -F"\t" '$4>1{print$1}' larva1_salmon/quant.sf > larva1_above1TPM.lst
 
 #Collect genes for which TPM > 1 in all samples
-perl select-id.pl larva1_above1TPM.lst larva2_above1TPM.lst > common_above1TPM.lst
+perl select-id3.pl larva1_above1TPM.lst larva2_above1TPM.lst > common_larvae_above1TPM.lst
+
+#Collect OG information
+for i in `cat common_larvae_above1TPM.lst`
+do
+ grep ${i} N0.removing-transposon.tsv
+done |sort|uniq >  larvae.lst.og
+
