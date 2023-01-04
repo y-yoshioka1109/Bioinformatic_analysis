@@ -56,3 +56,34 @@ while($l=<SCA>){
    }
 
 }
+
+
+#シングルNをN*10にした場合はこちらを使う.
+#open(SCA,$ARGV[0]);
+#while($l=<SCA>){
+#   chomp $l;
+#   # $lがscaffold名
+#   print  "$l\tsource\t1\.\.E\torganism\tPorites australiensis\n",
+#          "\t\t\tmol_type\tgenomic DNA\n\t\t\tcountry\tJapan:Okinawa, Sesoko Island\n",
+#          "\t\t\tff_definition\t@@[organism]@@ DNA, @@[submitter_seqid]@@\n",
+#	  "\t\t\tsubmitter_seqid\t@@[entry]@@\n",
+#	  "\t\t\tcollection_date\t2012\n";
+#
+#  #read AGP file
+#   open(AGP, $ARGV[1]);
+#   while($line=<AGP>){
+#      @a=split(/\t/,$line);
+#      if($l eq $a[0] and $a[4] ne "W"){
+#         if($a[5] == 10){## gap長が1bpの場合
+#             print "\tassembly_gap\t$a[1]..$a[2]\testimated_length\tunknown\n",
+#                   "\t\t\tgap_type\twithin scaffold\n",
+#                  "\t\t\tlinkage_evidence\tpaired-ends\n";
+#         }
+#         else{
+#             print "\tassembly_gap\t$a[1]..$a[2]\testimated_length\tknown\n",
+#                 "\t\t\tgap_type\twithin scaffold\n",
+#                 "\t\t\tlinkage_evidence\tpaired-ends\n";
+#        }
+#      }
+#   }
+#}
