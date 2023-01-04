@@ -34,8 +34,8 @@
  grep ">"  cat_split.fa |perl -pe 's/>//g' |grep -e "s004" -e "s005" > tmp.name
  grep ">"  cat_second.fa |perl -pe 's/>//g' |grep -e "s004" -e "s005" > tmp.name
 
-#s004, s005をテストとして, 配列名を抽出する. 1塩基のGapをN*10にした場合は下の行を実行する. 
- seqkit grep -nrp s004 -nrp s005 genome.fa > test.scaff
+#s004, s005をテストとして, 配列名を抽出する. ついでにFastaの末尾に//を代入する.
+ seqkit grep -nrp s004 -nrp s005 genome.fa | perl fasta_parsar.pl - > test.scaff
 
 #AGPファイル (Contig/Gap長をまとめたファイル) を作成する.
  perl make_AGPfile2.pl tmp.length tmp.name > tmp.agp
