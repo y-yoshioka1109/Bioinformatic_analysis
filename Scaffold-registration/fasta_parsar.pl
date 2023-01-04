@@ -1,10 +1,11 @@
 # for prepare DDBJ format fasta
 # example;
-# >ENT_ANT0001|56|1p25||| 
+# >scaf1
 # ggacaggctgccgcaggagccagg 
-# 
-# >ENT_ANT0002|56|1p25||| 
-# ctcacacagatgctgcgcacaccgt 
+# ggacaggctgccgcaggagccagg
+
+# >scaf1 
+# ggacaggctgccgcaggagccaggggacaggctgccgcaggagccagg
 # // 
 
 while(<>){
