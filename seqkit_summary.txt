@@ -1,5 +1,0 @@
-#欲しい配列のIDで検索
-seqkit grep -p contig.143 contigs.fa 
-
-#シーケンス長でソート
-seqkit fx2tab -l contigs.fa |awk '{print$1"\t"$3}'|sort -k2 -nr
