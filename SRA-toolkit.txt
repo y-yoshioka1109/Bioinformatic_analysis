@@ -1,17 +1,17 @@
-fastq-dumpを今まで使っていたが、fasterq-dumpが新たにリリースされていた。
+#fastq-dumpを今まで使っていたが、fasterq-dumpが新たにリリースされていた。
 
 #Link to SRA-toolkit
-https://github.com/ncbi/sra-tools
+ https://github.com/ncbi/sra-tools
 
 試しにダウンロード時間を測ってみた。ダウンロードしたファイルはpaired-endで1.8Gbのデータ。
-fastq-dump --split-e SRR####### -->> 13m16.894s
-fasterq-dump -S SRR#######  -->> 10m25.979s
+ fastq-dump --split-e SRR####### -->> 13m16.894s
+ fasterq-dump -S SRR#######  -->> 10m25.979s
 
 *fasterq-dumpはデフォルトで6スレッド使うらしい。
 
 ######################################################
-#parallel-fastq-dumpがとても使いやすい (2021年9月30日追記)
-parallel-fastq-dump --threads 24 --split-files --outdir dir --sra-id ${i}
+#parallel-fastq-dumpの方が高速で使いやすい
+　parallel-fastq-dump --threads 24 --split-files --outdir dir --sra-id ${i}
   
   
   
