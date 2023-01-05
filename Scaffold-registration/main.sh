@@ -41,6 +41,7 @@
  perl make_AGPfile2.pl tmp.length tmp.name > tmp.agp
 
 #AGPファイルを元にアノテーションファイル (AGPに加え、著者/アッセンブリ作成方法/生データなどをまとめたファイル) を作成する. 1塩基のGapをN*10にした場合は下の行を実行する.
+#アノテーションファイルの雛形はこちらを参照 (https://www.ddbj.nig.ac.jp/ddbj/file-format.html#sample)
  grep ">" cat_split.fa | grep -e "s004" -e "s005" |cut -b 2- |awk -F'_' '{print $1}' |uniq |perl ../make_AnnotationFile_scaffold.pl - tmp.agp > tmp.annotation
  grep ">" cat_first.fa | grep -e "s004" -e "s005" |cut -b 2- |awk -F'_' '{print $1}' |uniq |perl ../make_AnnotationFile_scaffold.pl - tmp.agp > tmp.annotation
 
