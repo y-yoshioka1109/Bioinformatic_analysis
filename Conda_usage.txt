@@ -1,0 +1,11 @@
+#仮想環境一覧
+ conda info -e
+
+#仮想環境削除
+ conda remove -n [name] --all
+
+#仮想環境構築
+ conda create -n [name] [library]
+
+#Mambaの導入 (http://kazumaxneo.hatenablog.com/entry/2021/02/11/073000)
+ conda install -c conda-forge mamba
