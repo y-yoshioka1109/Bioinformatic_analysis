@@ -1,0 +1,30 @@
+#############################
+####  Breaker3のinstall  ####
+#############################
+# https://hub.docker.com/r/teambraker/braker3
+
+# 公式はSingularityの使用を進めている.以下のコマンドでイメージファイルを作成.
+ml singularity
+srun -p short -t 15:00 -c 1 --mem=8G singularity build braker3.sif docker://teambraker/braker3:latest
+
+# 以下のように入力することで、作成したイメージファイルを使用できる.
+export BRAKER_SIF=/home/y/yu-yoshioka/braker3.sif
+singularity exec $BRAKER_SIF
+
+# 作成したイメージにPATHを通す
+export BRAKER_SIF=/home/y/yu-yoshioka/braker3.sif
+
+###############################
+####   TE toolsのinstall   ####
+###############################
+# https://github.com/Dfam-consortium/TETools
+# イメージファイルの作成.
+ml singularity
+srun -p compute -c 1 --mem 8G -t 12:00:00 singularity build tetools.sif docker://dfam/tetools:latest
+
+#############################
+####   BUSCO のinstall   ####
+#############################
+# https://busco.ezlab.org/busco_userguide.html#installing-busco-code
+srun -p compute -c 1 --mem 8G -t 12:00:00 singularity build busco_v5.4.7.sif docker://ezlabgva/busco:v5.4.7_cv1
+
