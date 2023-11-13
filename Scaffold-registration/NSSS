@@ -1,6 +1,9 @@
-DDBJ submission portal (https://ddbj.nig.ac.jp/submission/)
 
-詳細については以下のスライドにある。
+Web 版塩基配列登録システム (DDBJ Nucleotide Sequence Submission System, 略称 NSSS) は、アノテーションをつけた塩基配列を Web 経由で登録できるシステムです。
+
+DDBJ submission portal (https://ddbj.nig.ac.jp/submission/) からsubmissionを作成できる.
+
+登録方法の詳細については以下のスライドにまとまっている。
 https://www.ddbj.nig.ac.jp/assets/files/pdf/ddbj/websubHelp_full.pdf
 
 Qualifier keyの定義についてはこちら。
