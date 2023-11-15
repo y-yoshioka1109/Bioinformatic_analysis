@@ -9,6 +9,11 @@ https://www.ddbj.nig.ac.jp/assets/files/pdf/ddbj/websubHelp_full.pdf
 Qualifier keyの定義についてはこちら。
 https://www.ddbj.nig.ac.jp/ddbj/qualifiers.html#product
 
-複数サンプルを登録する場合は、以下のように任意の遺伝子を先頭にした方が良い。
+複数サンプルを登録する場合は、以下のように任意の遺伝子を先頭にした方が登録しやすかった。
 seqkit subseq -r 12860:18252 MS1.fa > MS1-1.fa
 seqkit subseq -r 1:12859 MS1.fa >> MS1-1.fa
+
+#Submission informationに以下を記入した.
+Assembly method: GetOrganelle v1.7.7.0.
+Sequencing Technology: Illumina MiSeq
+This assembly is circular.
