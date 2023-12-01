@@ -14,6 +14,7 @@ vagrant ssh #以降はVM環境に移る。
 config.vm.synced_folder "/Users/yoshioka_macmini/vm-singularity/shared", "/home/vagrant/shared"
 Host: /Users/yoshioka_macmini/vm-singularity/shared  <<==>>  VM: /home/vagrant/shared
 
+####################################################################################################
 #イメージファイルのビルド
 singularity build --sandbox pasa docker://pasapipeline/pasapipeline:latest
 
