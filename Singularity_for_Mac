@@ -1,0 +1,25 @@
+PASA　と　AUGUSTUS をインストールした際のメモ
+
+#基本的に公式ページに従って作業を進める。
+https://docs.sylabs.io/guides/3.0/user-guide/installation.html#install-on-windows-or-mac
+
+brew install virtualbox --cask
+brew install vagrant --cask
+export VM=sylabs/singularity-3.0-ubuntu-bionic64
+vagrant init $VM
+vagrant up
+vagrant ssh #以降はVM環境に移る。
+
+#Vagrantfileの以下の行のコメントアウトを削除し、適当なフォルダを入力する。これによってVM環境とMacの間でファイルが同期される。
+config.vm.synced_folder "/Users/yoshioka_macmini/vm-singularity/shared", "/home/vagrant/shared"
+Host: /Users/yoshioka_macmini/vm-singularity/shared  <<==>>  VM: /home/vagrant/shared
+
+#イメージファイルのビルド
+singularity build --sandbox pasa docker://pasapipeline/pasapipeline:latest
+
+#イメージファイル内の一部を書き換える
+export PASA_SIF=/home/vagrant/pasa
+singularity shell --fakeroot --writable $PASA_SIF
+nano usr/local/src/PASApipeline/PerlLib/CDNA/CDNA_alignment.pm 
+
+
