@@ -23,4 +23,7 @@ export PASA_SIF=/home/vagrant/pasa
 singularity shell --fakeroot --writable $PASA_SIF
 nano usr/local/src/PASApipeline/PerlLib/CDNA/CDNA_alignment.pm 
 
+#編集後のコンテナをイメージファイルに変換
+singularity build pasa.sif pasa
+
 
