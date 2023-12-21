@@ -45,6 +45,9 @@
  grep ">" cat_split.fa | grep -e "s004" -e "s005" |cut -b 2- |awk -F'_' '{print $1}' |uniq |perl ../make_AnnotationFile_scaffold.pl - tmp.agp > tmp.annotation
  grep ">" cat_first.fa | grep -e "s004" -e "s005" |cut -b 2- |awk -F'_' '{print $1}' |uniq |perl ../make_AnnotationFile_scaffold.pl - tmp.agp > tmp.annotation
 
+# 以下のサブミッションサイトからfastaとannotationを提出する.
+https://mss.ddbj.nig.ac.jp/home?locale=ja
+
 #jPerserで確認する (32Gb memory required).
  jParser.sh -x tmp.annotation -s tmp.scaf 
  
