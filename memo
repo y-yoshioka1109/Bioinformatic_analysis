@@ -5,3 +5,9 @@ https://rnakato.hatenablog.jp/entry/2017/11/08/113245
 
 # Augustusのインストール。普通にインストールするとコケるが（libboost部分）、以下のチャネルを使うと問題なくインストールできた。
 conda create -n slm3 -y -c conda-forge -c bioconda augustus
+
+
+# Iso-seqのデータはbamがないと、hqリードを取得できない?
+https://isoseq.how/clustering/cli-workflow.html
+
+
