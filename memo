@@ -9,5 +9,5 @@ conda create -n slm3 -y -c conda-forge -c bioconda augustus
 
 # Iso-seqのデータはbamがないと、hqリードを取得できない?
 https://isoseq.how/clustering/cli-workflow.html
-
+https://isoseq.how/clustering/schematic-workflow.html
 
