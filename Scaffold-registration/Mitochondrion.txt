@@ -1,0 +1,87 @@
+COMMON	SUBMITTER		contact	Yuki Yoshioka
+			ab_name	Yoshioka,Y.
+			email	y.yoshioka@oist.jp
+			url	https://www.oist.jp/
+			phone	81-98-966-8653
+			institute	Okinawa Institute of Science and Technology
+			department	Marine Genomics Unit
+			country	Japan
+			state	Okinawa
+			city	Kunigami-gun
+			street	1919-1 Tancha, Onna-son
+			zip	904-9495
+	REFERENCE		title	The complete mitochondrial genome of ####
+			ab_name	Yoshioka,Y.
+			status	Unpublished
+			year	2023
+	DATE		hold_date	20250508
+  TOPOLOGY    circular
+	ST_COMMENT		tagset_id	Assembly-Data
+			Assembly Method	GetOrganelle v. 1.7.7.0
+			Sequencing Technology	Illumina MiSeq
+	DBLINK		project	PRJDB17204
+			biosample	SAMD00664550
+			sequence read archive	DRR519303
+MS1	source	1..18252	mol_type	genomic DNA
+			organelle	mitochondrion
+			organism	Acropora ####
+			isolate	MS1
+			collection_date	2012-04-27
+			country	Japan: Okinawa, Sesoko Island
+			collected_by	#### ####
+	rRNA	3..1961	product	16S ribosomal RNA
+	CDS	join(2328..2876,14716..15831)	codon_start	1
+			transl_table	4
+			gene	ND5
+			product	NADH dehydrogenase subunit 5
+	CDS	3197..4180	codon_start	1
+			transl_table	4
+			gene	ND1
+			product	NADH dehydrogenase subunit 1
+	CDS	4291..5448	codon_start	1
+			transl_table	4
+			gene	CYTB
+			product	cytochrome b
+	CDS	5874..7070	codon_start	1
+			transl_table	4
+			gene	ND2
+			product	NADH dehydrogenase subunit 2
+	CDS	7136..7696	codon_start	1
+			transl_table	4
+			gene	ND6
+			product	NADH dehydrogenase subunit 6
+	CDS	7765..8463	codon_start	1
+			transl_table	4
+			gene	ND2
+			product	NADH dehydrogenase subunit 6
+	CDS	8663..10090	codon_start	1
+			transl_table	4
+			gene	ATP6
+			product	ATP synthase F0 subunit 6
+	rRNA	10353..11325	product	12S ribosomal RNA
+	CDS	12320..13108	codon_start	1
+			transl_table	4
+			gene	COX3
+			product	cytochrome c oxidase subunit III
+	CDS	13157..13900	codon_start	1
+			transl_table	4
+			gene	COX2
+			product	cytochrome c oxidase subunit II
+	CDS	13932..14231	codon_start	1
+			transl_table	4
+			gene	ND4L
+			product	NADH dehydrogenase subunit 4L
+	CDS	14264..14620	codon_start	1
+			transl_table	4
+			gene	ND3
+			product	NADH dehydrogenase subunit 3
+	tRNA	15862..15931	product	tRNA-Trp
+	CDS	15964..16182	codon_start	1
+			transl_table	4
+			gene	ATP8
+			product	ATP synthase F0 subunit 8
+	CDS	16164..17765	codon_start	1
+			transl_table	4
+			gene	COX1
+			product	cytochrome c oxidase subunit I
+	tRNA	17973..18043	product	tRNA-Met
