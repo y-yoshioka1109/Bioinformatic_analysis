@@ -27,8 +27,8 @@
  cat *split |seqkit stat 
 
 #s004, s005をテストとして, 配列長を抽出する. 1塩基のGapをN*10にした場合は下の行を実行する. 
- seqkit fx2tab -l cat_split.fa |awk -F"\t" '{print$1"\t"$4}' | grep -e "s004" -e "s005" > tmp.length
- seqkit fx2tab -l cat_second.fa |awk -F"\t" '{print$1"\t"$4}' | grep -e "s004" -e "s005" > tmp.length
+ seqkit fx2tab -n -l cat_split.fa | grep -e "s004" -e "s005" > tmp.length
+ seqkit fx2tab -n -l cat_second.fa grep -e "s004" -e "s005" > tmp.length
 
 #s004, s005をテストとして, 配列名を抽出する. 1塩基のGapをN*10にした場合は下の行を実行する. 
  grep ">"  cat_split.fa |perl -pe 's/>//g' |grep -e "s004" -e "s005" > tmp.name
