@@ -1,0 +1,100 @@
+COMMON	SUBMITTER		contact	Yuki Yoshioka
+			ab_name	Kanai,M.
+			ab_name	Nagata,T.
+			ab_name	Satoh,N.
+			ab_name	Yoshioka,Y.
+			email	y.yoshioka@oist.jp
+			url	https://www.oist.jp/
+			phone	81-098-966-8653
+			institute	Okinawa Institute of Science and Technology Graduate University
+			department	Marine Genomics Unit
+			country	Japan
+			state	Okinawa
+			city	Onna-son
+			street	1919-1, Tancha
+			zip	904-0495
+	REFERENCE		title	Extensive mitochondrial genomic analyses reveal dynamic gene rearrangements in Octocorallia (Cnidaria: Anthozoa).
+			ab_name	Yoshioka,Y.
+			ab_name	Kanai,M.
+			ab_name	Gishitomi,S.
+			ab_name	Arakaki,N.
+			ab_name	Koido,T.
+			ab_name	Shinzato,C.
+			ab_name	Inoue,J.
+			ab_name	Nagata,T.
+			ab_name	Satoh,N.
+			status	Unpublished
+			year	2024
+	DATE		hold_date	20260513
+	ST_COMMENT		tagset_id	Assembly-Data
+			Assembly Method	GetOrganelle v. 1.7.7.0
+			Sequencing Technology	Illumina NovaSeq 6000
+	DBLINK		project	PRJDB17996
+			biosample	SAMD00776994
+			sequence read archive	DRR552883
+Sf1_MT	source	1..18454	mol_type	genomic DNA
+			organelle	mitochondrion
+			organism	Sarcophyton sp. Sf1
+			isolate	Sf1
+			isolation_source	Reef slope
+			collection_date	2023-10-07
+			geo_loc_name	Japan:Okinawa, Okinawa-jima, Sunabe
+	rRNA	1..1752	product	16S ribosomal RNA
+	CDS	1808..3154	codon_start	1
+			transl_table	4
+			gene	ND2
+			product	NADH dehydrogenase subunit 2
+	CDS	3142..4959	codon_start	1
+			transl_table	4
+			gene	ND2
+			product	NADH dehydrogenase subunit 5
+	CDS	4980..6428	codon_start	1
+			transl_table	4
+			gene	ND4
+			product	NADH dehydrogenase subunit 4
+	tRNA	complement(6470..6540)	product	tRNA-Met
+	CDS	complement(6574..7359)	codon_start	1
+			transl_table	4
+			gene	COX3
+			product	cytochrome c oxidase subunit III
+	CDS	complement(7416..8123)	codon_start	1
+			transl_table	4
+			gene	ATP6
+			product	ATP synthase F0 subunit 6
+	CDS	complement(8141..8356)	codon_start	1
+			transl_table	4
+			gene	ATP8
+			product	ATP synthase F0 subunit 8
+	CDS	complement(8379..9140)	codon_start	1
+			transl_table	4
+			gene	COX2
+			product	cytochrome c oxidase subunit II
+	CDS	9395..10990	codon_start	1
+			transl_table	4
+			gene	COX1
+			product	cytochrome c oxidase subunit I
+	rRNA	10838..11860	product	12S ribosomal RNA
+	CDS	11911..12882	codon_start	1
+			transl_table	4
+			gene	ND1
+			product	NADH dehydrogenase subunit 1
+	CDS	12914..14074	codon_start	1
+			transl_table	4
+			gene	CYTB
+			product	cytochrome b
+	CDS	14088..14645	codon_start	1
+			transl_table	4
+			gene	ND6
+			product	NADH dehydrogenase subunit 6
+	CDS	14689..15042	codon_start	1
+			transl_table	4
+			gene	ND3
+			product	NADH dehydrogenase subunit 3
+	CDS	15046..15339	codon_start	1
+			transl_table	4
+			gene	ND4L
+			product	NADH dehydrogenase subunit 4L
+	CDS	15353..18301	codon_start	1
+			transl_table	4
+			gene	mutS
+			product	MutS-like protein
