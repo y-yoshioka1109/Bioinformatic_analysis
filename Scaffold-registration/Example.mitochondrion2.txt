@@ -1,7 +1,4 @@
 COMMON	SUBMITTER		contact	Yuki Yoshioka
-			ab_name	Kanai,M.
-			ab_name	Nagata,T.
-			ab_name	Satoh,N.
 			ab_name	Yoshioka,Y.
 			email	y.yoshioka@oist.jp
 			url	https://www.oist.jp/
@@ -13,16 +10,8 @@ COMMON	SUBMITTER		contact	Yuki Yoshioka
 			city	Onna-son
 			street	1919-1, Tancha
 			zip	904-0495
-	REFERENCE		title	Extensive mitochondrial genomic analyses reveal dynamic gene rearrangements in Octocorallia (Cnidaria: Anthozoa).
+	REFERENCE		title	Mitochondrial genome.
 			ab_name	Yoshioka,Y.
-			ab_name	Kanai,M.
-			ab_name	Gishitomi,S.
-			ab_name	Arakaki,N.
-			ab_name	Koido,T.
-			ab_name	Shinzato,C.
-			ab_name	Inoue,J.
-			ab_name	Nagata,T.
-			ab_name	Satoh,N.
 			status	Unpublished
 			year	2024
 	DATE		hold_date	20260513
